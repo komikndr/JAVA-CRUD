@@ -106,16 +106,10 @@ public class HandlerDrones{
                 System.out.print("Drone Class["+drone.getDroneClass()+"]:");
                 String DroneClass = scanner.nextLine();
                 System.out.print("Speed["+drone.getSpeed()+"]:");
-                String Speed = scanner.nextLine();
-                if(!OwnerName.equals("")){
-                    drone.setOwnerName(OwnerName);;
-                }
-                if(!DroneClass.equals("")){
-                    drone.setDroneClass(DroneClass);;
-                }
-                if(tryParseDouble(Speed)){
-                    drone.setSpeed(Double.parseDouble(Speed));
-                }
+                double Speed = scanner.nextDouble();
+                drone.setOwnerName(OwnerName);
+                drone.setDroneClass(DroneClass);
+                drone.setSpeed(Speed);
                 int result = DroneJDBC.update(drone);
                 if(result > 0) {
                     System.out.println("List updated!");
@@ -128,8 +122,8 @@ public class HandlerDrones{
             scanner.nextLine();
         }catch (SQLException e) {
             System.err.println(e.getMessage());
-        }catch (InputMismatchException ex) {
-            System.out.println("oh no! the input was type wrong.\n come back and try again.");
+        }catch (InputMismatchException e) {
+            System.out.println("oh no! the input was type wron1g.\n come back and try again.");
             scanner.nextLine();
             scanner.nextLine();
         }
@@ -213,7 +207,7 @@ public class HandlerDrones{
 
     public boolean tryParseDouble(String value) {
         try {
-            Double.parseDouble(value);
+            Double.parseDouble(value.trim());
             return true;
         } catch (NumberFormatException e) {
             return false;
