@@ -149,7 +149,7 @@ public class DroneJDBC implements CRUDInterface{
             pStatement.setString(1,drone.getOwnerName());
             pStatement.setString(2,drone.getDroneClass());
             pStatement.setDouble(3,drone.getSpeed());
-            pStatement.setInt(5,drone.getDroneId());
+            pStatement.setInt(4,drone.getDroneId());
             result = pStatement.executeUpdate();
         }catch (SQLSyntaxErrorException ex){
             System.err.println("Error: "+ex.getMessage());
